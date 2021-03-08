@@ -64,7 +64,7 @@ uint32_t UART::sendMessage(void)// throw (int)
 
 int main(void)
 {
-    uint32_t status = 0;
+    int status = 0;
     UART uart;
     string str = "Exception Handling";
     //uart.setMessage(str);
@@ -100,5 +100,6 @@ int main(void)
         cout<<"In catch-all block.."<<endl;
     }
 
+    status = status;
     return 0;
 }
