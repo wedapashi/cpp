@@ -66,15 +66,15 @@ int main(void)
 
     cout<<"Length is "<<R1.getLength()<<", "<<"Breadth is "<<R1.getbreadth()<<endl;
     cout<<"Area is "<<R1.area()<<endl;
-    cout<<"Area is "<<R1.perimeter()<<endl;
+    cout<<"Perimeter is "<<R1.perimeter()<<endl;
     cout<<endl;
     cout<<"Length is "<<R2.getLength()<<", "<<"Breadth is "<<R2.getbreadth()<<endl;
     cout<<"Area is "<<R2.area()<<endl;
-    cout<<"Area is "<<R2.perimeter()<<endl;
+    cout<<"Perimeter is "<<R2.perimeter()<<endl;
     cout<<endl;
     cout<<"Length is "<<R3.getLength()<<", "<<"Breadth is "<<R3.getbreadth()<<endl;
     cout<<"Area is "<<R3.area()<<endl;
-    cout<<"Area is "<<R3.perimeter()<<endl;
+    cout<<"Perimeter is "<<R3.perimeter()<<endl;
 
     return 0;
 }
