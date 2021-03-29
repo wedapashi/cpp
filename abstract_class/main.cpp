@@ -28,5 +28,6 @@ int main(void)
 {
     comm_interface *p = new uart();
     p->send();
+    cout<<"comm_interface is an abstract class.."<<endl;
     return 0;
 }
