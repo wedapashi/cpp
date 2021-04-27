@@ -21,7 +21,6 @@ public:
 int main(void)
 {
     Rectangle R1;
-
     R1.length = 10;
     R1.breadth = 5;
     cout<<"Area is "<<R1.area()<<endl;
