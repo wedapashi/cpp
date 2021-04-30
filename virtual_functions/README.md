@@ -9,7 +9,7 @@ A virtual function is a member function which is declared within a base class an
 3. Functions are declared with a virtual keyword in base class.  
 4. The resolving of function call is done at Run-time.  
 
-Rules for Virtual Functions
+**Rules for Virtual Functions**
 
   1. Virtual functions cannot be static.  
   2. A virtual function can be a friend function of another class.  
