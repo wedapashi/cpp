@@ -1,3 +1,4 @@
+# Friend functions and classes
 Only member functions can access private, protected and public members.
 If there is a glocal function which is not a member function of the class, then it can only access public members of the
 class upon the object of the class.
