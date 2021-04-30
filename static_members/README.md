@@ -1,4 +1,4 @@
-Static data members and member functions
+# Static data members and member functions
 
 When you declare a static data member, it has be declared outside the class with scope resolution operator.
 The static member is then treated as a global variable but only within the class, hence static.
