@@ -1,6 +1,6 @@
 # This pointer
 
-To understand ‘this’ pointer, it is important to know how objects look at functions and data members of a class.
+To understand `this` pointer, it is important to know how objects look at functions and data members of a class.
 
 1. Each object gets its own copy of the data member.  
 2. All-access the same function definition as present in the code segment.  
