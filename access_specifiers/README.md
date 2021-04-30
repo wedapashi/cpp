@@ -1,3 +1,6 @@
-# cpp
-These are C++ Programs scribbled during the knowledge-building of C++ programming. I understand and am aware of the fact that thse codes in any form as of today are not suitable/worthy of using in any of the ongoing developments.
+#Access Specifiers
 
+In C++, there are three access specifiers:
+public - members are accessible from outside the class
+private - members cannot be accessed (or viewed) from outside the class
+protected - members cannot be accessed from outside the class, however, they can be accessed in inherited classes.
