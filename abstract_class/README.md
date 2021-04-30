@@ -1,3 +1,5 @@
+# Abstract class
+
 Lets get this straight! Function overriding helps levaraging inheritance. Virtual functions help to define interfaces.
 And, pure virtual functions are required to achieve polymorphism.
 
