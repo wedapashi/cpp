@@ -1,3 +1,4 @@
+# String class
 C++ has in its definition a way to represent sequence of characters as an object of class. This class is called std:: string. String class stores the characters as a sequence of bytes with a functionality of allowing access to single byte character.
 
 Constructors:
