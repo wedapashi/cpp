@@ -9,7 +9,7 @@ The constructor prototype and header have an interesting property -- Although th
 # Types of constructors:
 
 1. Default constructor -- A *default constructor* is a constructor that is used to create an object when you don’t provide explicit initialization values.
-2. Copy constructorA copy constructor for a class normally has this prototype:Class_name(const Class_name &); -- A *copy constructor* is used to copy an object to a newly created object. That is, it’s used during initialization, including passing function arguments by value and not during ordinary assignment.
+2. Copy constructor -- A copy constructor for a class normally has this prototype:Class_name(const Class_name &); -- A *copy constructor* is used to copy an object to a newly created object. That is, it’s used during initialization, including passing function arguments by value and not during ordinary assignment.
 3. Parameterized constructor -- It is possible to pass arguments to constructors. Typically, these arguments help initialize an object when it is created. To create a parameterized constructor, simply add parameters to it the way you would to any other function. When you define the constructor’s body, use the parameters to initialize the object. 
 
 
