@@ -18,6 +18,7 @@ void Base::display(void)
 {
     cout<<"In Base class display().. a = "<< a <<endl;
 }
+
 void Derived::display(void)
 {
     cout<<"In Derived class display().. a = "<< a << endl;

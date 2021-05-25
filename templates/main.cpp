@@ -42,7 +42,7 @@ template<class T>
 T Stack<T>::pop(void)
 {
     T x = 0;
-    if(-1==this->top)
+    if(-1 == this->top)
     {
         throw 2;
     }
@@ -59,7 +59,7 @@ template<class T>
 void Stack<T>::display(void)
 {
     int t = this->top;
-    if(-1==this->top)
+    if(-1 == this->top)
     {
         cout<<"Stack is empty.."<<endl;
     }
@@ -116,5 +116,4 @@ int main(void)
 
     return 0;
 }
-
 
