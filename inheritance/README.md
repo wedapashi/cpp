@@ -6,7 +6,7 @@ integrated package than does a function library.
 Inheritance (using classes, of cource) lets you derive new classes from existing ones, with the derived class inheriting
 the properties, including the methods, properties of the existing class -- or more precisely base class.
 
-class <DerivedClass> : public <BaseClass> { };
+`class <DerivedClass> : public <BaseClass> { };`
 
 The above inheritance is through a public derivation. With such a derivation, the public members of the base class
 become public members of the dereived class. The private portions of a base class beome part of the derived class, but
