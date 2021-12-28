@@ -1,3 +1,4 @@
-# cpp
-These are C++ Programs scribbled during the knowledge-building of C++ programming. I understand and am aware of the fact that thse codes in any form as of today are not suitable/worthy of using in any of the ongoing developments.
+# Polymorphism using the Function Overriding
+
+If derived class defines same function as defined in its base class, it is known as function overriding in C++. It is used to achieve runtime polymorphism. It enables you to provide specific implementation of the function which is already provided by its base class.
 
