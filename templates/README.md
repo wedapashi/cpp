@@ -1,5 +1,5 @@
 # Templates
-The essense of the whole object-oriented programming it to levarage reusability.
+The essense of the whole object-oriented programming is to levarage/exploit reusability.
 However, Inheritance and containment aren't always the solutions when reusability is desired.
 Imagine scenarios with stacks. Typically, people demonstrate stack with plain numbers that are integers. So, we develop a container class for a stack of integers, fair enough.  
 In such as case when you need a stack of floating point values, then you'd have to have a separate container class for a stack of floats, which is doable but defnitely not efficient. Imagine the code duplication for conceptually similar operations.
