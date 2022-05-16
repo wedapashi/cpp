@@ -1,6 +1,6 @@
 # Static data members and member functions
 
-When you declare a static data member, it has be declared outside the class with scope resolution operator.
+When you declare a static data member, it has to be declared outside the class with scope resolution operator.
 The static member is then treated as a global variable but only within the class, hence static.
 In the example code, `ppid` is a static data member.
 static data members can be accessed using object names as well upon the class withuot taking an object of the class.
