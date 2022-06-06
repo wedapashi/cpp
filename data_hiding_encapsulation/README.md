@@ -1,11 +1,8 @@
 The concept of Object-Oriented design relies heavily on programming constructs given by the language itself. In the case of C++ those are:
 
 * Abstraction
-
 * Encapsulation
-
 * Inheritance
-
 * Polymorphism
 
 # Abstraction
@@ -24,7 +21,7 @@ In normal terms, encapsulation is defined as the wrapping up of data and informa
 
 It depicts an "is-a" relationship. For example, a cube is a square, a sphere is a circle. An apple is a fruit. Inheritance (using classes, of course) lets you derive new classes from existing ones, with the derived class inheriting the properties, including the methods and properties, of the existing class—or more precisely, the base class.
 
-    class : public { };
+    class : public { };
 
 The above inheritance is through a public derivation. With such a derivation, the public members of the base class become public members of the derived class. The private portions of a base class become part of the derived class, but they can be accessed only through public and protected methods of the base class.
 The special relationship between a derived class and a base class is based on an underlying model for C++ inheritance.Actually, C++ has three varieties of inheritance: public, protected, and private. Public inheritance is the most common form, and it models an is-a relationship.This is shorthand for saying that an object of a derived class should also be an object of the base class. Anything you do with a base-class object, you should be able to do with a derived-class object.
