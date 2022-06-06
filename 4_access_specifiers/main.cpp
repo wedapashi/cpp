@@ -58,8 +58,10 @@ int main(void)
 {
     Rectangle R1;
 
-    R1.length = 10;
-    R1.breadth = 5;
+    //R1.length = 10;
+    //R1.breadth = 5;
+    R1.setLength(10);
+    R1.setBreadth(5);
 
     cout<<"Area is "<<R1.area()<<endl;
     cout<<"Perimeter is "<<R1.perimeter()<<endl;
