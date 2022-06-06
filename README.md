@@ -1,9 +1,9 @@
 # Object-Oriented programming and C++
 
 Our life is best example of adaptive way of thinking, we at time are procedure-oriented, at times object-oriented.
-For example, if I work at Gooogle, I still won't say _"I am going to Google"_, I'd say _"I am going to office"_.
+For example, if I work at Google, I still won't say _"I am going to Google"_, I'd say _"I am going to office"_.
 Who loves pizzas? When you want to have a pizza, in general - not from a specific outlet, you typically think about going to a pizza outlet nearby and have it, thats a procedural way of thinking. The emphasis is on _'having a pizza'_. 
-However, we are object-oriented when we plan to go to a Subway outlet. The agenda is to have anything that suits our choice and budget which is offered at Subwy. So, we have _objectified_ our eating/hunger requirement to Subway. 
+However, we are object-oriented when we plan to go to a Subway outlet. The agenda is to have anything that suits our choice and budget which is offered at Subway. So, we have _objectified_ our eating/hunger requirement to Subway. 
 We keep objectifying things. We don't wake up as an Engineer or something, we wake in real mode as a person, or a human being. We then objectify ourselves in order to get the work done -- in office hours we are engineers, at the pool table, we are pool players, etc.
 Does that tell you have with the right context, we can change how we behave, or even change the core function we have? Indeed!
 
