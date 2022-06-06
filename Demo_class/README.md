@@ -5,7 +5,7 @@ You can define a class. Generally, a class specification has two parts:
 
 In our example, `Rectangle` is a class with `length` and `breadth` as data-members. We have provided some functions such as `area()` and `perimeter()` which are member functions (or methods). 
 
-Program Output
+# Program Output
 
     Area is 50
     Perimeter is 30
