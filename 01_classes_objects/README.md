@@ -3,11 +3,10 @@ You can define a class. Generally, a class specification has two parts:
 1. A class declaration, which describes the data component in terms of data members, and a public interface in terms of member functions (called as methods)
 2. The class method definitions, which describe how certains class member functions are implemented.
 
-In our example, `Rectangle` is a class with `length` and `breadth` as data-members. We have provided some functions such as `area()` and `perimeter()` which are member functions (or methods). 
+In our example, `Rectangle` is a class with `length` and `breadth` as data-members. We have provided some functions such as `area()` and `perimeter()` which are member functions (or methods).   
 
-===
-
-###Program Output
+***
+### Program Output
 
     Area is 50
     Perimeter is 30
