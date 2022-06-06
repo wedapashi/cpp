@@ -36,12 +36,13 @@ would indicate that the following `write()` method is of `Class foo`.
 Scope resolution operator does come handy when accessing the static data members of the class. The syntax remains the same.
 
 ***
+
 ### Program output:
 
-   u32Count (local) = 10
-   u32Count (global) = 100
-   u32Count (alloc) = 50
-   In read..
-   In write..
+    u32Count (local) = 10
+    u32Count (global) = 100
+    u32Count (alloc) = 50
+    In read..
+    In write..
 
 
