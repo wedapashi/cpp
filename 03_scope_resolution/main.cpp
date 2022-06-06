@@ -1,97 +1,41 @@
 #include <iostream>
+#include <cstdint>
+
 using namespace std;
 
-class Rectangle
+class foo
 {
-private:
-    uint32_t length;
-    uint32_t breadth;
-
 public:
-    Rectangle();
-    Rectangle(uint32_t l, uint32_t b);
-    Rectangle(Rectangle &r);
-    void setLength(uint32_t l);
-    uint32_t getLength();
-    void setBreadth(uint32_t b);
-    uint32_t getbreadth();
-    uint32_t area();
-    uint32_t perimeter();
-    ~Rectangle();
+    static uint32_t u32Count;
+    uint32_t read(void)
+    {
+        cout << "In read.." << endl;
+        // Some code
+        return 0;
+    }
+    uint32_t write(void);
 };
-
-Rectangle::Rectangle()
+uint32_t foo::write(void)
 {
-    cout<<"Rectangle: In default constructor"<<endl;
-    setLength(1);
-    setBreadth(1);
-}
-Rectangle::Rectangle(uint32_t l, uint32_t b)
-{
-    cout<<"Rectangle: In parameterized constructor"<<endl;
-    setLength(l);
-    setBreadth(b);
+    cout << "In write.." << endl;
+    // Some code
+    return 0;
 }
 
-Rectangle::Rectangle(Rectangle &r)
-{
-    cout<<"Rectangle: In copy constructor"<<endl;
-    length = r.length;
-    breadth = r.breadth;
-}
-
-void Rectangle::setLength(uint32_t l) // Mutator
-{
-    length = l;
-}
-
-uint32_t Rectangle::getLength() // Facilitator
-{
-    return length;
-}
-
-void Rectangle::setBreadth(uint32_t b) // Mutator
-{
-    breadth = b;
-}
-
-uint32_t Rectangle::getbreadth() // Facilitator
-{
-    return breadth;
-}
-
-uint32_t Rectangle::area()
-{
-    return length * breadth;
-}
-
-uint32_t Rectangle::perimeter()
-{
-    return 2 * (length + breadth);
-}
-
-Rectangle::~Rectangle()
-{
-    cout<<"Rectangle: In destructor.."<<endl;
-}
+uint32_t foo::u32Count = 50;
+uint32_t u32Count = 100;
 
 int main(void)
 {
-    Rectangle R1;  // Invokes default constructor
-    Rectangle R2(10, 5); // Invokes paramterized constructor
-    Rectangle R3(R2); // Invokes copy constructor
+    foo alloc;
+    uint32_t u32Count = 10;
+    
+    cout << "u32Count (local) = " << u32Count << endl;
+    cout << "u32Count (global) = " << ::u32Count << endl;
+    cout << "u32Count (alloc) = " << foo::u32Count << endl;
 
-    cout<<"Length is "<<R1.getLength()<<", "<<"Breadth is "<<R1.getbreadth()<<endl;
-    cout<<"Area is "<<R1.area()<<endl;
-    cout<<"Area is "<<R1.perimeter()<<endl;
-    cout<<endl;
-    cout<<"Length is "<<R2.getLength()<<", "<<"Breadth is "<<R2.getbreadth()<<endl;
-    cout<<"Area is "<<R2.area()<<endl;
-    cout<<"Area is "<<R2.perimeter()<<endl;
-    cout<<endl;
-    cout<<"Length is "<<R3.getLength()<<", "<<"Breadth is "<<R3.getbreadth()<<endl;
-    cout<<"Area is "<<R3.area()<<endl;
-    cout<<"Area is "<<R3.perimeter()<<endl;
-
+    alloc.read();
+    alloc.write();
+    
     return 0;
 }
