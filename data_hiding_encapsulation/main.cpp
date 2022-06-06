@@ -41,7 +41,7 @@ int main(void)
 
     cout<<"Length is "<<R1.getLength()<<", "<<"Breadth is "<<R1.getbreadth()<<endl;
     cout<<"Area is "<<R1.area()<<endl;
-    cout<<"Area is "<<R1.perimeter()<<endl;
+    cout<<"Perimeter is "<<R1.perimeter()<<endl;
 
     return 0;
 }
