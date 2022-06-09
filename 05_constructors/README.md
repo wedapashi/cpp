@@ -12,5 +12,13 @@ The constructor prototype and header have an interesting property -- Although th
 2. Copy constructor -- A copy constructor for a class normally has this prototype:Class_name(const Class_name &); -- A *copy constructor* is used to copy an object to a newly created object. That is, it’s used during initialization, including passing function arguments by value and not during ordinary assignment.
 3. Parameterized constructor -- It is possible to pass arguments to constructors. Typically, these arguments help initialize an object when it is created. To create a parameterized constructor, simply add parameters to it the way you would to any other function. When you define the constructor’s body, use the parameters to initialize the object. 
 
+***
 
+### Program output:
 
+    In foo: In parameterized constructor
+    In foo: In parameterized constructor
+    foo: In copy constructor
+    foo: In destructor
+    foo: In destructor
+    foo: In destructor
