@@ -1,80 +1,64 @@
 #include <iostream>
 using namespace std;
 
-class Rectangle
+class foo
 {
 private:
-    uint32_t length;
-    uint32_t breadth;
+    uint32_t bar;
+    uint32_t baz;
 
 public:
+#if 0
     // Default constructor, can't return anything!
-    /*
-    Rectangle()
+    foo()
     {
-        cout<<"Rectangle: In default constructor"<<endl;
-        length = 1;
-        breadth = 1;
+        cout<<"In foo: default constructor"<<endl;
+        bar = 1;
+        baz = 1;
     }
-    */
+#endif
     // Parameterized constructor, can't return anything! This also acts as default argument constructor
     // If default arguments are provided, the deault constructor is no longer required.
-    Rectangle(uint32_t l=1, uint32_t b=1)
+    foo(uint32_t a=1, uint32_t b=1)
     {
-        cout<<"Rectangle: In parameterized constructor"<<endl;
-        setLength(l);
-        setBreadth(b);
+        cout<<"In foo: In parameterized constructor"<<endl;
+        setBar(bar);
+        setBaz(baz);
     }
     // Copy constructor
-    Rectangle(Rectangle &r)
+    foo(foo &f)
     {
-        cout<<"Rectangle: In copy constructor"<<endl;
-        length = r.length;
-        breadth = r.breadth;
+        cout<<"foo: In copy constructor"<<endl;
+        bar = f.bar;
+        baz = f.baz;
     }
-    void setLength(uint32_t l) // Mutator
+    void setBar(uint32_t b) // Mutator
     {
-        length = l;
+        bar = b;
     }
-    uint32_t getLength() // Facilitator
+    uint32_t getBar() // Facilitator
     {
-        return length;
+        return bar;
     }
-    void setBreadth(uint32_t b) // Mutator
+    void setBaz(uint32_t b) // Mutator
     {
-        breadth = b;
+        baz = b;
     }
-    uint32_t getbreadth() // Facilitator
+    uint32_t getBaz() // Facilitator
     {
-        return breadth;
+        return baz;
     }
-    uint32_t area()
+    ~foo()
     {
-        return length * breadth;
-    }
-    uint32_t perimeter()
-    {
-        return 2 * (length + breadth);
+        cout << "foo: In destructor" << endl;
     }
 };
 
 int main(void)
 {
-    Rectangle R1;  // Invokes default constructor
-    Rectangle R2(10, 5); // Invokes paramterized constructor
-    Rectangle R3(R2); // Invokes copy constructor
-
-    cout<<"Length is "<<R1.getLength()<<", "<<"Breadth is "<<R1.getbreadth()<<endl;
-    cout<<"Area is "<<R1.area()<<endl;
-    cout<<"Perimeter is "<<R1.perimeter()<<endl;
-    cout<<endl;
-    cout<<"Length is "<<R2.getLength()<<", "<<"Breadth is "<<R2.getbreadth()<<endl;
-    cout<<"Area is "<<R2.area()<<endl;
-    cout<<"Perimeter is "<<R2.perimeter()<<endl;
-    cout<<endl;
-    cout<<"Length is "<<R3.getLength()<<", "<<"Breadth is "<<R3.getbreadth()<<endl;
-    cout<<"Area is "<<R3.area()<<endl;
-    cout<<"Perimeter is "<<R3.perimeter()<<endl;
+    foo f1;  // Invokes default constructor
+    foo f2(10, 5); // Invokes paramterized constructor
+    foo f3(f2); // Invokes copy constructor
 
     return 0;
 }
