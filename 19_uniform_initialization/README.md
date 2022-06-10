@@ -14,7 +14,7 @@ With class objects, a braced list can be used instead of a paranthesized list to
     private:
         uint16_t dataRate;
         uint8_t dmaChannel;
-        // Other membsers will follow
+        // Other members will follow
     public:
         uint16_t getDatarate(void) { return dataRate; }
         uint8_t  getDMAChannel(void) { return dmaChannel; }
