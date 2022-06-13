@@ -40,7 +40,7 @@ As said earlier, reference must initialized during the declaration itself. If no
     main.cpp:8:15: error: ‘ref’ declared as reference but not initialized
     8 |     uint32_t &ref;
 
-One can figure out the differences between references & pointers:
+**One can figure out the differences between references & pointers:**
 - References are alias, they do not require additional space for storing the value, pointers are variables, require storage to hold addresses
 - References must be initialized, pointers can be left uninitialized -- but that will lead to issues later
 - In case of a reference the initializer is always a lvalue, in case of pointer it can lvalue or a number/literal
