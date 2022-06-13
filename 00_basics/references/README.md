@@ -22,7 +22,8 @@ Look at an example of memory layout with a pointer:
         |          |________________|
         |_         |________________|
 
-With reference:                       
+With reference:
+
          _          ________________
         |          |________________|
         |          |________________|
