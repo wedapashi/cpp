@@ -1,97 +1,37 @@
 #include <iostream>
 using namespace std;
 
-class Rectangle
+class interface
 {
 private:
-    uint32_t length;
-    uint32_t breadth;
-
+    uint8_t port;
+    uint8_t pin;
+    uint8_t dir;
+    uint8_t pinFunction;
 public:
-    Rectangle();
-    Rectangle(uint32_t length, uint32_t breadth);
-    Rectangle(Rectangle &r);
-    void setLength(uint32_t length);
-    uint32_t getLength();
-    void setBreadth(uint32_t breadth);
-    uint32_t getbreadth();
-    uint32_t area();
-    uint32_t perimeter();
-    ~Rectangle();
+    interface()
+    {
+        port = pin = dir = pinFunction = {0};
+    }
+    void configure(uint8_t Port, uint8_t Pin, uint8_t Direction, uint8_t PinFunction)
+    {
+        port = Port;
+        pin = Pin;
+        dir = Direction;
+        pinFunction = PinFunction;
+        cout << "Address held in this pointer:" << this << endl; 
+    }
 };
-
-Rectangle::Rectangle()
-{
-    cout<<"Rectangle: In default constructor"<<endl;
-    setLength(1);
-    setBreadth(1);
-}
-Rectangle::Rectangle(uint32_t length, uint32_t breadth)
-{
-    cout<<"Rectangle: In parameterized constructor"<<endl;
-    setLength(length);
-    setBreadth(breadth);
-}
-
-Rectangle::Rectangle(Rectangle &r)
-{
-    cout<<"Rectangle: In copy constructor"<<endl;
-    this->length = r.length;
-    this->breadth = r.breadth;
-}
-
-void Rectangle::setLength(uint32_t length) // Mutator
-{
-    this->length = length;
-}
-
-uint32_t Rectangle::getLength() // Facilitator
-{
-    return this->length;
-}
-
-void Rectangle::setBreadth(uint32_t breadth) // Mutator
-{
-    this->breadth = breadth;
-}
-
-uint32_t Rectangle::getbreadth() // Facilitator
-{
-    return this->breadth;
-}
-
-uint32_t Rectangle::area()
-{
-    return length * breadth;
-}
-
-uint32_t Rectangle::perimeter()
-{
-    return 2 * (length + breadth);
-}
-
-Rectangle::~Rectangle()
-{
-    cout<<"Rectangle: In destructor.."<<endl;
-}
 
 int main(void)
 {
-    Rectangle R1;  // Invokes default constructor
-    Rectangle R2(10, 5); // Invokes paramterized constructor
-    Rectangle R3(R2); // Invokes copy constructor
+    interface iface1;
+    interface iface2;
 
-    cout<<"Length is "<<R1.getLength()<<", "<<"Breadth is "<<R1.getbreadth()<<endl;
-    cout<<"Area is "<<R1.area()<<endl;
-    cout<<"Area is "<<R1.perimeter()<<endl;
-    cout<<endl;
-    cout<<"Length is "<<R2.getLength()<<", "<<"Breadth is "<<R2.getbreadth()<<endl;
-    cout<<"Area is "<<R2.area()<<endl;
-    cout<<"Area is "<<R2.perimeter()<<endl;
-    cout<<endl;
-    cout<<"Length is "<<R3.getLength()<<", "<<"Breadth is "<<R3.getbreadth()<<endl;
-    cout<<"Area is "<<R3.area()<<endl;
-    cout<<"Area is "<<R3.perimeter()<<endl;
+    cout << "Address of iface1 object:" << &iface1 << endl; 
+    iface1.configure(1, 2, 0, 4);
+    cout << "Address of iface2 object:" << &iface2 << endl; 
+    iface2.configure(2, 8, 1, 1);
 
-    return 0;
+    return EXIT_SUCCESS;
 }
