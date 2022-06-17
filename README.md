@@ -23,7 +23,7 @@ Our adventures with the C programming language are similar, at least in the begi
 We learnt adding two numbers using local variables, we didn't write functions for addition as the first-way of doing t, did we? Majority of C programming is still very procedure-oriented.
 
 **The Object-Oriented way:**
-We all have heard this term **_Object-Oriented Programming_**, and all the talk about the 4 pillars of it. For a beginner, it might appear that the whole programming is about following certain principles, which is not entirely true. It is worth noting that, everything in OOP seems to revolve around classes and objects, and one might err to think that objects are anyways instances of classes. So, why it isn't called **_Class-oriented programming_** insteads? 
+We all have heard this term **_Object-Oriented Programming_**, and all the talk about the 4 pillars of it. For a beginner, it might appear that the whole programming is about following certain principles, which is not entirely true. It is worth noting that, everything in OOP seems to revolve around classes and objects, and one might err to think that objects are anyways instances of classes. So, why it isn't called **_Class-oriented programming_** instead? 
 Answer to the question lays in the fundamentals aspects of how an object is used. 
 
 # C++
