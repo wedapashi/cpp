@@ -17,6 +17,7 @@ public:
     static void update_ppid(int v)
     {
         ppid = v;
+        // pid = -1; // << Enable this and see the compilation error!
     }
 };
 
