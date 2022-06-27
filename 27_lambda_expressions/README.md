@@ -8,24 +8,24 @@ see them one by one --
 
 Typical nature of syntax is:
 
-    [capture_list](args){ //body };
+    [capture_list](args)(return_type){ //body };
 
-And a functional call would be:
+However, the return type can be omitted as C++ support `auto` type when capturing the `return` values.
+A functional call would be:
 
     [capture_list](args){ //body }();
 
 Usage:
 
     int main(void) {
-        []() { std::cout << "Capture list empty, args list empty, no return value, done!" << endl; }();
+        []() { std::cout << "Capture list empty, args list empty, no return value, done!" << std::endl; }();
         return EXIT_SUCCESS;
     }
 
 Can we set a reference (usage: somewhat like a function pointer) to this? Yes we can:
 
     int main(void) {
-        auto funRef = []() { std::cout << "Capture list empty, args list empty, no return value, done!" << endl; }; //
-        Notice the missing (); in the back!
+        auto funRef = []() { std::cout << "Capture list empty, args list empty, no return value, done!" << std::endl; }; // Notice the missing (); in the back!
         funRef(); // Its here!
         return EXIT_SUCCESS;
     }
@@ -34,7 +34,7 @@ Passing arguments and fetching the return value:
 
     int main(void) {
         uint32_t ret = [](uint32_t foo, uint32_t bar) { foo + bar; }(10U, 20U);
-        //                                                           ^    ^
+        //                                                           ^    ^  <-- Note these!
         return EXIT_SUCCESS;
     }
 
@@ -44,7 +44,7 @@ Passing local variables as an argument to unname function:
         uint32_t foo = 10;
         double pi = 3.14;
         double ret = [foo, pi](){ return pi*foo; }();
-        //            ^    ^
+        //            ^    ^   <-- Note these!
     }
 
 Modifying the local values from the unname function:
@@ -53,7 +53,7 @@ Modifying the local values from the unname function:
         uint32_t foo = 10;
         uint32_t bar = 20;
         [&foo, &bar]() { ++foo; ++bar; }();
-//       ^     ^   
+//       ^     ^   <-- Note these!
         // Here -- foo and bar will have incremented value.
     }
 
