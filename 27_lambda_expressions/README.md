@@ -53,7 +53,7 @@ Modifying the local values from the unname function:
         uint32_t foo = 10;
         uint32_t bar = 20;
         [&foo, &bar]() { ++foo; ++bar; }();
-//       ^     ^   <-- Note these!
+    //   ^     ^   <-- Note these!
         // Here -- foo and bar will have incremented value.
     }
 
