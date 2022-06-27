@@ -6,7 +6,7 @@ int main(void) {
     uint32_t foo = 10;
     uint32_t bar = 20;
     cout << "foo = " << foo << ", bar = " << bar << endl;
-    [&foo, &bar](){
+    [&](){
         foo ^= bar;
         bar ^= foo;
         foo ^= bar;
