@@ -134,4 +134,25 @@ We can use `emplace()` to construct a value = 88, in the container as a desired 
     ++v_it;
     ++v_it;
     v.emplace(v_it, 88);
-    
+
+***
+### Program output:
+
+    Vector already has 2 values: 1, 2
+    Lets push values 4, 6, 8, 10
+    Printing values by iterator: 1 2 4 6 8 10
+    Printing values by for each loop: 1 2 4 6 8 10
+    Lets see some other functions that are available with vectors:
+    We can use at() method to access a data member at an index..Value at 3rd index is 6
+    Okay, no non-sense but We can use [] operator method to access a data member at an index..Value at 3rd index accessed as v[3] is 6
+    We can use front() and back() methods to access a data member at first and last position..Front is 1 and back is 10
+    We can use data() to pass the vector as a pointer..First index accessed using a compatible pointer is 1
+    We can use begin() to set the iterator to the front of the vector..First value accessed using an iterator set using begin() is 1
+    We can use end() to set the iterator to the back of the vector..Last value accessed using an iterator set using end() and then doing a iterator decrement is 10
+    We can use insert() to insert the value in the container.. Lets set the iterator to the front, increment it twice to insert data (test value 55) into container at 3rd position..Lets print values by for each loop: 1 2 55 4 6 8 10
+    We can use emplace() to construct a value in the container as a desired position.. Lets set the iterator to the front, increment it thrice to insert data (test value 88) into container at 4th position..Lets print values by for each loop: 1 2 55 88 4 6 8 10
+    We can use size() method to check the size of the vector.. Size = 8
+    We can use v.resize(v.size() + 4) to increase the size of vector by 4..
+    New size is 12 , Capacity is 16
+    Using v.shrink_to_fit() to free unused memory..
+    Size = 12
