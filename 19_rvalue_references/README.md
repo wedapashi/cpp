@@ -19,20 +19,26 @@ R-values:
  - Functions that return-by-value return r-value
 
 What is a temporary? 
+
     int x = 5;
+
 Here `5` is a temporary.
 
 How does an expression return l-value? A typical example would be increment and decrement operators. For example, `++x;` is an l-value, and so is `~x;`.
 
 How does an expression return r-value?
+    
     int x = 5+10;
     int y = x + 5;
     int z = x + y;
+
 Here `5+10` is an expression, that returns `15` which is a r-value. Similarly, `x + 5` and `x + y` are r-values, they
 don't persist beyond expressions.
 
 What is a function that returns by-value?
+
     pid_t getpid(void);
+
 This is a function that returns `pid_t`, which is a r-value.Similarly, `strlen()`, `rand()` are the functions that
 return by value -- returning a r-value.
 
@@ -88,6 +94,7 @@ Now,
     }
 
 will print:
+
     int&
     const int&
     
@@ -98,6 +105,7 @@ If we write another function that takes a r-value reference:
     }
 
 will print:
+    
     int&
     int&&
 
