@@ -13,7 +13,7 @@ mkfile_path:=$(abspath $(lastword $(MAKEFILE_LIST)))
 OUTPUT:=$(notdir $(patsubst %/,%,$(dir $(mkfile_path))))
 
 all: 
-	$(CC) $(TARGET).cpp -o $(OUTPUT).out $(CFLAGS) $(LIBS)
+	$(CC) $(TARGET).cpp -o a.out $(CFLAGS) $(LIBS)
 
 clean:
 	rm *.out

@@ -5,8 +5,8 @@ using namespace std;
 int main(void)
 {
     uint32_t number = 10;
-    uint32_t &ref;
-    // uint32_t &ref = number;
+    //uint32_t &ref;
+    uint32_t &ref = number;
 
     cout << "number = " << number << endl;
     cout << "ref = " << ref << endl;
