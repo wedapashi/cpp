@@ -45,3 +45,5 @@ defaulted.
         base_of_five_defaults& operator=(base_of_five_defaults&&) = default;
         virtual ~base_of_five_defaults() = default;
     };
+
+
