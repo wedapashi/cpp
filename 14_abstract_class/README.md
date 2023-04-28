@@ -13,3 +13,9 @@ In this example, `comm_interface` is class with `send()` and `receive()` declare
 We can have a pointer `p` of the `comm_interface` type (base class type) and instantiate it with object of `uart` class which happens to be a derived class. We can call `send` which is a pure virtual function within the base class `comm_interface`, yet, it invokes the member function upon the derived class.
 
 This strategy can help you design reusable code/classes and let the derived class inplement the relevant functionality.
+
+***
+### Program output:
+
+    In Derived class send()..
+    comm_interface is an abstract class..
