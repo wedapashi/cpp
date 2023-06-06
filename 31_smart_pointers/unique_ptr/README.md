@@ -19,12 +19,12 @@ Following compilation error is thrown:
 
     g++ main.cpp -o a.out -g -std=c++17 -Werror -Wall -Wno-unknown-pragmas -lpthread -lrt
     main.cpp: In function ‘void createSensorHandle()’:
-    main.cpp:45:25: error: use of deleted function ‘std::unique_ptr<_Tp, _Dp>::unique_ptr(const std::unique_ptr<_Tp, _Dp>&) [with _Tp = sensor; _Dp = std::default_delete<sensor>]’
-    45 |     auto tempPtr(sensPtr);
+    main.cpp:45:25: error: use of deleted function ‘std::unique_ptr<_Tp, 
+        _Dp>::unique_ptr(const std::unique_ptr<_Tp, _Dp>&) [with _Tp = sensor; _Dp = std::default_delete<sensor>]’
+     45 |     auto tempPtr(sensPtr);
         |                         ^
-    In file included from /usr/include/c++/11/memory:76,
-                   from main.cpp:2:
-    /usr/include/c++/11/bits/unique_ptr.h:468:7: note: declared here
+    In file included from /usr/include/c++/11/memory:76, from main.cpp:2:
+        /usr/include/c++/11/bits/unique_ptr.h:468:7: note: declared here
     468 |       unique_ptr(const unique_ptr&) = delete;
         |       ^~~~~~~~~~
     make: *** [Makefile:17: all] Error 1
@@ -46,19 +46,20 @@ You'd still get compilation errors:
 
     g++ main.cpp -o a.out -g -std=c++17 -Werror -Wall -Wno-unknown-pragmas -lpthread -lrt
     main.cpp: In function ‘void createSensorHandle()’:
-    main.cpp:55:13: error: use of deleted function ‘std::unique_ptr<_Tp, _Dp>::unique_ptr(const std::unique_ptr<_Tp, _Dp>&) [with _Tp = sensor; _Dp = std::default_delete<sensor>]’
-        55 |     transfer(sensPtr);
-           |     ~~~~~~~~^~~~~~~~~
-    In file included from /usr/include/c++/11/memory:76,from main.cpp:2: /usr/include/c++/11/bits/unique_ptr.h:468:7: note: declared here
-       468 |       unique_ptr(const unique_ptr&) = delete;
-           |       ^~~~~~~~~~
+    main.cpp:55:13: error: use of deleted function ‘std::unique_ptr<_Tp, 
+        _Dp>::unique_ptr(const std::unique_ptr<_Tp, _Dp>&) [with _Tp = sensor; _Dp = std::default_delete<sensor>]’
+     55 |     transfer(sensPtr);
+        |     ~~~~~~~~^~~~~~~~~
+    In file included from /usr/include/c++/11/memory:76,from main.cpp:2: 
+        /usr/include/c++/11/bits/unique_ptr.h:468:7: note: declared here
+    468 |       unique_ptr(const unique_ptr&) = delete;
+        |       ^~~~~~~~~~
     main.cpp:41:39: note:   initializing argument 1 of ‘void transfer(std::unique_ptr<sensor>)’
-        41 | void transfer(std::unique_ptr<sensor> ptr)
-           |               ~~~~~~~~~~~~~~~~~~~~~~~~^~~
+     41 | void transfer(std::unique_ptr<sensor> ptr)
+        |               ~~~~~~~~~~~~~~~~~~~~~~~~^~~
     make: *** [Makefile:17: all] Error 1
 
-So, if you are willing to pass this pointer as a smart pointer to a function, you ought to move it in the function call using `std::move`.
-However, you can move a unique pointer because thought it doesn't have copy semantics, it has move semantics.
+You can move a unique pointer because thought it doesn't have copy semantics, it has move semantics.
 So, if you are willing to pass this pointer as a smart pointer to a function, you ought to move it in the function call using `std::move`.
 
     transfer(std::move(sensPtr));
@@ -66,11 +67,9 @@ So, if you are willing to pass this pointer as a smart pointer to a function, yo
 This should work! Obviously, after this function call, `sensPtr` is a null pointer and shouldn't be used.
 
 ***
-
 ### Program output:
 
     default constructor of sensor class
     50
     50
     default destructor of sensor class
-
