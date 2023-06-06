@@ -74,6 +74,33 @@ invokes the copy constructor whereas,
 
 invokes a parameterized constructor as compiler does the implicit conversion between primitive type to user-defined type. 
 
+## Explicit usage:
+
+You may not always want the implicit converion from primitive type to user-defined type happen without neing noticed.
+It is usually recommended that the single argument constructors taking a primitve type argument should be marked as `explicit`.
+
+    explicit foo(uint32_t a=1)
+    {
+        cout<<"foo: In parameterized constructor"<<endl;
+        bar = a;
+    }
+
+Now the compiler can no longer user this constructor for implicit type conversion. 
+
+    g++ main.cpp -o a.out -g -std=c++17 -Werror -Wall -Wno-unknown-pragmas -lpthread -lrt
+    main.cpp: In function ‘int main()’:
+    main.cpp:33:14: error: conversion from ‘unsigned int’ to non-scalar type ‘foo’ requested
+        33 |     foo f3 = 144U;
+           |              ^~~~
+    main.cpp:37:11: error: could not convert ‘250’ from ‘unsigned int’ to ‘foo’
+        37 |     print(250U); // invokes parameterized constructor
+           |           ^~~~
+           |           |
+           |           unsigned int
+    make: *** [Makefile:17: all] Error 1
+
+However, this depends on the purpose of the class, because some cases we may have classes that are nothing but thin wrappers over the primitive types.  
+
 ***
 
 ### Program output:
@@ -85,5 +112,3 @@ invokes a parameterized constructor as compiler does the implicit conversion bet
     144
     foo: In parameterized constructor
     250
-
-
