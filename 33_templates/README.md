@@ -17,7 +17,7 @@ the keyword `class` as serving as a type name for a variable that accepts a type
 and of Type as representing a name for this variable.  
 Using `class` here doesn’t mean that `Type` must be a class; it just means that `Type` serves as a generic type specifier for which a real type will be substituted when the template is used.
 
-Template class usage:  
+### Template class usage:  
 
 Merely including a template in a program doesn’t generate a template class. You have to ask for an instantiation.To do this, you declare an object of the template class type, replacing the generic type name with the particular type you want.
 
