@@ -11,7 +11,7 @@ It can't be predicted if the function `foo()` throws an exception or not. Howeve
     int bar(void) noexcept;
 
 indicates that it is ensured that a user code in the function `bar()` does not throw an exception that needs to be handled by the user code.
-However, if an exception is throw from a piece of code such as a library function for example, then the execution lands
+However, if an exception is thrown from a piece of code such as a library function for example, then the execution lands
 at `std::terminate()`.
 
 
