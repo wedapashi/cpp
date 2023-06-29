@@ -1,105 +1,78 @@
-#include <string>
 #include <iostream>
-using namespace std;
+#include <memory>
+#include <cstring>
+#include <string>
+#include <fstream>
+#include <sstream>
 
-class UART
-{
-private:
-    uint32_t dataLength;
-    string Message;
-public:
-    UART();
-    uint32_t getDataLength(void);
-    void setDataLength(uint32_t);
-    string getMessage(void);
-    void setMessage(string s);
-    uint32_t sendMessage(void);// throw (int);
-    ~UART();
+class buffer {
+    unsigned char packet[64];
+    unsigned int where;
+    public:
+        void writeAt(unsigned int pos, unsigned char* src, unsigned int sz) {
+            if(nullptr == src)
+                throw std::invalid_argument("source pointer is nullptr.");
+            if(pos >= sizeof(packet))
+                throw std::out_of_range("Array out of bounds.");
+            if(sz >= sizeof(packet) - pos)
+                throw std::range_error("Invalid range operation causing buffer overrun.");
+            std::memcpy(&packet[where], src, sz);
+            where+=sz;
+        }
+
+        void append(unsigned char* src, unsigned int sz) {
+            writeAt(this->where, src, sz);
+        }
+
+        void print(void) {
+            std::cout << packet << std::endl;
+        }
 };
 
-UART::UART(void)
-{
-    cout<<"In default constructor.."<<endl;
-    this->Message.clear();
-    this->dataLength = 0;
-}
-UART::~UART()
-{
-    cout<<"In default destructor.."<<endl;
-}
-void UART::setDataLength(uint32_t l)
-{
-    this->dataLength = l;
-}
-uint32_t UART::getDataLength(void)
-{
-    return this->dataLength;
-}
-void UART::setMessage(string s)
-{
-    this->Message = s;
-}
-string UART::getMessage(void)
-{
-    return this->Message;
-}
-uint32_t UART::sendMessage(void)// throw (int)
-{
-    if(0 == this->dataLength)
-    {
-        throw 1;
-    }
-    else if(true == this->Message.empty())
-    {
-        throw string("Unknown exception..");
-    }
-    else
-    {
-        cout<<this->Message<<"--";
-        cout<<"Message sent!"<<endl;
-    }
-
-    return 0;
-}
-
-int main(void)
-{
-    int status = 0;
-    UART uart;
-    string str = "Exception Handling";
-    //uart.setMessage(str);
-    uart.setDataLength(str.length());
-
-    try
-    {
-        status = uart.sendMessage();
-    }
-    catch(int e)
-    {
-        cout<<"In int catch block.."<<endl;
-
-        if(1 == e)
-        {
-            cout<<"Data lenth not set.."<<endl;
+class keyValuePair {
+    std::string key;
+    std::string value;
+    const char delimiter = '\n';
+    public:
+        keyValuePair() : key(), value() { }
+        keyValuePair(std::string _key, std::string _value) : key(_key), value(_value) { }
+        void set(const std::string& _key, const std::string& _val) {
+            key = _key;
+            value = _val;
         }
-        else if(2 == e)
-        {
-            cout<<"Message is empty.."<<endl;
+        const std::string get(void) const {
+            std::ostringstream ostream;
+            ostream << '\"' << key << '\"' << " = " << '\"' << value << '\"' << delimiter;
+            return ostream.str();
         }
-        else
-        {
-            cout<<"Unknown exception.."<<endl;
+        void print(void) const {
+            std::cout << this->get() << std::endl;
         }
-    }
-    catch(double e)
-    {
-        cout<<"In double catch block.."<<endl;
-    }
-    catch(...)
-    {
-        cout<<"In catch-all block.."<<endl;
-    }
+        const unsigned int getSize(void) const {
+            return this->get().length();
+        }
+        unsigned char* exportAsArray(void) {
+            unsigned char* arr = new unsigned char[this->getSize()];
+            std::memcpy(arr, this->get().c_str(), this->getSize());
+            return arr;
+        }
+};
 
-    status = status;
-    return 0;
+int main()
+{
+    try {
+        buffer b;
+        keyValuePair field1("SN", "123456");
+        keyValuePair field2("VID", "22C4");
+        keyValuePair field3("Error Injection", "I will Cause overflow");
+        b.append(field1.exportAsArray(), field1.getSize());
+        b.append(field2.exportAsArray(), field2.getSize());
+        b.append(field3.exportAsArray(), field3.getSize());
+        b.print();
+    }
+    catch (const std::exception& e) {
+        std::cout << e.what() << std::endl;
+    }
+    return EXIT_SUCCESS;
 }
+
