@@ -3,14 +3,12 @@
 It is introduced in `C++11` version.
 As the name suggests, at a time only one pointer can point to the object.
 It is used when you do not want to share the underlying resource, in this case the `sensor` class.
-Suppose we have a `sensor` class and a `sensorHandlePtr` class. And we have created a unique pointer in the following
-way: 
+Suppose we have a `sensor` class and we have created a unique pointer in the following way: 
 
     std::unique_ptr<sensor> sensPtr(new sensor);
 
 Upon creation, the constructor of the class `sensor` in called. 
-This works until you try to create a copy of this pointer.
-The compiler will not allow creating a copy of it because copy constructor of `unique_ptr`is a deleted function. 
+This works just as a raw pointer until you try to create a copy of this pointer. The compiler will not allow creating a copy of it because copy constructor of `unique_ptr`is a deleted function. 
 Suppose we try to do that by:
 
     auto tempPtr(p);
@@ -29,8 +27,21 @@ Following compilation error is thrown:
         |       ^~~~~~~~~~
     make: *** [Makefile:17: all] Error 1
 
-If you pass this pointer as an argument to a function, you still get the same issue. Support there is a `transfer`
-function which takes `unique_ptr` as an argument. 
+Its important to understand that an object of `unique_ptr` is basically a wrapper around the pointer itself. You can
+still access the pointer element inside the `unique_ptr` object using `get()`, `reset()` methods. 
+Support if you want to pass this pointer as an argument to a function that takes a pointer to a class-type argument, it can be done:
+
+    void display(sensor* ptr)
+    {
+        // some code
+        std::cout << ptr->getRawValue() << std::endl;
+    }
+
+This method can still be called upon an object of `unique_ptr` that we have using:
+
+    display(sensPtr.get());
+
+Now, if you pass this pointer as an argument to a function, you still get the same issue. Support there is a `transfer` function which takes `unique_ptr` of class-type as an argument. 
 
     void transfer(std::unique_ptr<sensor> ptr)
     {
@@ -59,7 +70,7 @@ You'd still get compilation errors:
         |               ~~~~~~~~~~~~~~~~~~~~~~~~^~~
     make: *** [Makefile:17: all] Error 1
 
-You can move a unique pointer because thought it doesn't have copy semantics, it has move semantics.
+You can move a unique pointer because though it doesn't have copy semantics, it has move semantics.
 So, if you are willing to pass this pointer as a smart pointer to a function, you ought to move it in the function call using `std::move`.
 
     transfer(std::move(sensPtr));
@@ -69,7 +80,8 @@ This should work! Obviously, after this function call, `sensPtr` is a null point
 ***
 ### Program output:
 
-    default constructor of sensor class
-    50
-    50
-    default destructor of sensor class
+sensor()
+50
+50
+~sensor()
+

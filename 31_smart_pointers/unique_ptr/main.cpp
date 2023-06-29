@@ -14,29 +14,15 @@ public:
         bReady = false;
         rawValue += offset;
     }
-    sensor() { std::cout << "default constructor of sensor class" << std::endl; }
-    ~sensor() { std::cout << "default destructor of sensor class" << std::endl; }
+    sensor() { std::cout << "sensor()" << std::endl; }
+    ~sensor() { std::cout << "~sensor()" << std::endl; }
 };
 
-class sensorHandlePtr {
-    sensor *m_ptr; // Pointer to sensor class
-public:
-    // Constructor delegation
-    sensorHandlePtr(sensor *p = nullptr):m_ptr(p) { }
-    // Destructor
-    ~sensorHandlePtr() { 
-        cout << "Returning the memory borrowed.." << endl;
-        delete m_ptr; 
-    }
-    // Overloading the dereferencing operator
-    sensor& operator *() {
-        return *m_ptr;
-    }
-    // Overloading the arrow operator
-    sensor* operator ->() {
-        return m_ptr;
-    }
-};
+void display(sensor* ptr)
+{
+    // some code
+    std::cout << ptr->getRawValue() << std::endl;
+}
 
 void transfer(std::unique_ptr<sensor> ptr)
 {
@@ -50,7 +36,7 @@ void createSensorHandle()
     (*sensPtr).startMeasurement(50);
     // The line below causes a compilation error -- as it tries to create a copy of a unique pointer
     //auto tempPtr(sensPtr);
-    std::cout << sensPtr->getRawValue() << std::endl;
+    display(sensPtr.get());
     // The line below causes a compilation error -- as it tries to create a copy of a unique pointer
     //transfer(sensPtr);
     transfer(std::move(sensPtr));
