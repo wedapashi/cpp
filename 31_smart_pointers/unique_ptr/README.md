@@ -10,8 +10,8 @@ way:
 
 Upon creation, the constructor of the class `sensor` in called. 
 This works until you try to create a copy of this pointer.
-The compiler will now allow creating a copy of it because its copy constructor is a deleted function. Suppose we try to
-do that by:
+The compiler will not allow creating a copy of it because copy constructor of `unique_ptr`is a deleted function. 
+Suppose we try to do that by:
 
     auto tempPtr(p);
 
