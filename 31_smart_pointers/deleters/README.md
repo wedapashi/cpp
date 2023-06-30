@@ -46,7 +46,8 @@ And we can create a `unique_ptr` in the following manner -- see additional param
 This uses a function pointer as an argument and a compatible user-defined deleter function, in our case `Deleter()` function.
 
 In general, using class is better in terms of resources, as the function pointer mechanism somehow requires more memory. I didn't look for why that happens, because lets agree to call spade, a spade.
-The only difference for this between a `unique_ptr` and a `share_ptr` is, that for `shared_ptr` you don't have to specify the type (in triangular braces) as an additional argument.
+
+The only difference for this between a `unique_ptr` and a `shared_ptr` is, that for `shared_ptr` you don't have to specify the type (in triangular braces) as an additional argument.
 
 ***
 
