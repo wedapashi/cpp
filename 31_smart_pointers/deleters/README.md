@@ -9,16 +9,16 @@ You can have a class, a function object or a struct as a deleter implementation.
 Using the class or struct (change accordingly, of course):
 
     class Sensor { 
-    	// Some code here
+        // Some code here
     }; 
 
     class Deleter {
     public:
-    	void operator()(Sensor *p) {
+        void operator()(Sensor *p) {
     	    // Some user code
     	    // Finally, free it
     	    free(p);
-    	}
+        }
     }
 	
 And we can create a `unique_ptr` in the following manner -- see additional parameters there!
