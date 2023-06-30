@@ -15,9 +15,9 @@ Using the class or struct (change accordingly, of course):
     class Deleter {
     public:
         void operator()(Sensor *p) {
-    	    // Some user code
-    	    // Finally, free it
-    	    free(p);
+            // Some user code
+            // Finally, free it
+            free(p);
         }
     }
 	
