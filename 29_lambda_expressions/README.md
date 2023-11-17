@@ -38,7 +38,7 @@ Passing arguments and fetching the return value:
         return EXIT_SUCCESS;
     }
 
-Passing local variables as an argument to unname function:
+Passing local variables as an argument to unnamed function:
 
     int main(void) {
         uint32_t foo = 10;
@@ -47,7 +47,7 @@ Passing local variables as an argument to unname function:
         //            ^    ^   <-- Note these!
     }
 
-Modifying the local values from the unname function:
+Modifying the local values from the unnamed function:
 
     int main(void) {
         uint32_t foo = 10;
@@ -57,7 +57,7 @@ Modifying the local values from the unname function:
         // Here -- foo and bar will have incremented value.
     }
 
-Ahh, capturing all local variables such that those are modifiable in unname function:
+Ahh, capturing all local variables such that those are modifiable in unnamed function:
 
     int main(void) {
         [&]() { // All local vars are modifiable here }();
