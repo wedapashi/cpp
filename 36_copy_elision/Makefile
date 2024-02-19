@@ -2,7 +2,7 @@
 CC = g++
 
 # compiler flags:
-CFLAGS  = -g -std=c++11 -Werror -Wall -Wno-unknown-pragmas -fno-elide-constructors
+CFLAGS  = -g -std=c++17 -Werror -Wall -Wno-unknown-pragmas -fno-elide-constructors
 
 # define any libraries to link into executable:
 LIBS = -lpthread -lrt
