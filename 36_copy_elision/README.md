@@ -9,3 +9,31 @@ The Copy Elision is mostly ON by default in most IDEs as most modern compilers u
 
 `-fno-elide-constructors`
 
+### Example explained:
+
+`Integer` is a wrapper class around a dynamically allocated `int`. I know in reality no one will implement such a class, it makes no sense! However, lets look at it.
+
+There is a `add` method that takes two `int` args and returns them into a `Integer` type.
+
+So, with 
+
+    Integer sum = add(10, 20);
+
+The following outout is seen:
+
+    Integer(int)
+    Integer(Integer&&)
+    ~Integer()
+    ~Integer()
+
+## Why?
+
+It creates two instances of `Integer`, of source it invokes a parameterized c'tor where it does `Integer temp (a + b);`
+And, it invoked Move c'tor when it creates `sum`.
+
+If we __elide__ using `-fno-alide-constructors` flag in our make command, we see the following output:
+
+    Integer(int)
+    ~Integer()
+
+Meaning, it elided (avoided) creating a copy of the object what was being moved around. This is called Copy Elision.

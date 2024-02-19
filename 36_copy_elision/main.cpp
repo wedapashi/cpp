@@ -51,6 +51,6 @@ Integer add(int a, int b) {
 
 int main() {
     //Integer a = 10; // invokes a parameterized constructor due to Copy Elision
-    Integer sum = add(10,20);
+    Integer sum = add(10, 20);
     return 0;
 }
