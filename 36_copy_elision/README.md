@@ -20,8 +20,11 @@ So, with
     Integer sum = add(10, 20);
 
 The following outout is seen:
+![](https://img.shields.io/badge/C++11-00FFFF)
 
     Integer(int)
+    Integer(Integer&&)
+    ~Integer()
     Integer(Integer&&)
     ~Integer()
     ~Integer()
@@ -29,11 +32,11 @@ The following outout is seen:
 ## Why?
 
 It creates two instances of `Integer`, of source it invokes a parameterized c'tor where it does `Integer temp (a + b);`
-And, it invoked Move c'tor when it creates `sum`.
+And, this is returned by value causing an invokation Move c'tor when it creates `sum`.
 
 If we __elide__ using `-fno-alide-constructors` flag in our make command, we see the following output:
 
     Integer(int)
     ~Integer()
 
-Meaning, it elided (avoided) creating a copy of the object what was being moved around. This is called Copy Elision.
+Meaning, it elided (avoided) creating a copy of the object what was being moved around. Because, it was being returned as value, and a move/copy operation was elided. This is called Copy Elision.
