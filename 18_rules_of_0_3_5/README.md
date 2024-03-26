@@ -12,7 +12,7 @@ If a class has ownership semantics, then designed must provide a user-defined:
  - Move constructor
  - Move assignement operator
 
-Because the presence of a user-defined (or = default or = delete declared) destructor, copy-constructor, or copy-assignment operator prevents implicit definition of the move constructor and the move assignment operator, any class for which move semantics are desirable, has to declare all five special member functions.
+Because the presence of a user-defined (or = default or = delete declared) destructor, copy-constructor, or copy-assignment operator prevents implicit definition of the move constructor and the move assignment operator, any class for which move semantics are desirable, has to declare all five special member functions. If the use has not implemented any of the five functions from Rule of 5, the compiler implicitly generate move operations.
 
 ***
 ### Rule of 3
