@@ -2,7 +2,7 @@
 CC = g++
 
 # compiler flags:
-CFLAGS  = -g -std=c++17 -Werror -Wall -Wno-unknown-pragmas -fno-elide-constructors
+CFLAGS  = -g -std=c++23 -Werror -Wall -Wno-unknown-pragmas -fno-elide-constructors
 
 # define any libraries to link into executable:
 LIBS = -lpthread -lrt
@@ -13,7 +13,6 @@ mkfile_path:=$(abspath $(lastword $(MAKEFILE_LIST)))
 #OUTPUT:=$(notdir $(patsubst %/,%,$(dir $(mkfile_path))))
 
 all: 
-#	$(CC) $(TARGET).cpp -o $(OUTPUT).out $(CFLAGS) $(LIBS)
 	$(CC) $(TARGET).cpp -o a.out $(CFLAGS) $(LIBS)
 
 clean:
