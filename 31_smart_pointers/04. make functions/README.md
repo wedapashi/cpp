@@ -19,7 +19,7 @@ This should work! The way it works is, it invokes a suitable constructor of the 
 
     auto sensPtr = std::make_unique<Sensor>(1.021, 0.2107);
 
-**Note: **The only case where you can not use these make functions is when you want to specify a custom `deleter` function.
+**Note:** The only case where you can not use these make functions is when you want to specify a custom `deleter` function.
 
 ***
 ### Program output:
