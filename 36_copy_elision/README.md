@@ -9,7 +9,7 @@ The Copy Elision is mostly ON by default in most IDEs as most modern compilers u
 
 `-fno-elide-constructors`
 
-### Example explained:
+## Example explained:
 
 `Integer` is a wrapper class around a dynamically allocated `int`. I know in reality no one will implement such a class, it makes no sense! However, lets look at it.
 
@@ -20,7 +20,7 @@ There is a `add` method that takes two `int` args and returns them into a `Integ
         return temp;
     }
 
-So, with 
+So, with  
 
     Integer sum = add(10, 20);
 
