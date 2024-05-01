@@ -38,7 +38,7 @@ public:
 
 int main(void) {
     // std::unique_ptr<Sensor> sensPtr { new Sensor {1.021, 0.217} }; // << This is bad practise
-    auto sensPtr = std::make_unique<Sensor>(1.021, 0.217); // << This is recommended way to allocate for smart pointers
+    auto sensPtr = std::make_unique<Sensor>(1.021, 0.2107); // << This is recommended way to allocate for smart pointers
     sensPtr->display();
 
     return EXIT_SUCCESS;
