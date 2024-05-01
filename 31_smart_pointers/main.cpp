@@ -2,15 +2,15 @@
 using namespace std;
 
 class Seed {
-    private:
-        int value;
-    public:
-        void setSeed(int s) {
-            value = s;
-        }
-        int getSeed(void) {
-            return value;
-        }
+private:
+    int value;
+public:
+    void setSeed(int s) {
+        value = s;
+    }
+    int getSeed(void) {
+        return value;
+    }
 };
 
 class seedPtr {
@@ -35,8 +35,7 @@ public:
     }
 };
   
-int main()
-{
+int main() {
     seedPtr pSeed = new Seed;
     pSeed->setSeed(123);
     cout << "Seed value is " << pSeed->getSeed() << endl;

@@ -18,20 +18,17 @@ public:
     ~sensor() { std::cout << "~sensor()" << std::endl; }
 };
 
-void display(sensor* ptr)
-{
+void display(sensor* ptr) {
     // some code
     std::cout << ptr->getRawValue() << std::endl;
 }
 
-void transfer(std::unique_ptr<sensor> ptr)
-{
+void transfer(std::unique_ptr<sensor> ptr) {
     // some code
     std::cout << ptr->getRawValue() << std::endl;
 }
 
-void createSensorHandle()
-{
+void createSensorHandle() {
     std::unique_ptr<sensor> sensPtr(new sensor);
     (*sensPtr).startMeasurement(50);
     // The line below causes a compilation error -- as it tries to create a copy of a unique pointer
@@ -42,8 +39,7 @@ void createSensorHandle()
     transfer(std::move(sensPtr));
 }
 
-int main()
-{
+int main(void) {
     createSensorHandle();
     return EXIT_SUCCESS;
 }
