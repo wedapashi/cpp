@@ -3,7 +3,7 @@
 
 class Integer {
 public:
-    int* ptr;
+    int* ptr {nullptr};
     Integer() { }
     Integer(int value) {
         std::cout << "Integer(int)" <<std::endl;
