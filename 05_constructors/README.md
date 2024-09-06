@@ -16,21 +16,18 @@ The constructor prototype and header have an interesting property -- Although th
 
 Suppose we have a class containing a `uint32_t`.
 
-    class foo
-    {
+    class foo {
     private:
         uint32_t bar;
     public:
         // Parameterized constructor, as default argument constructor
         // If default arguments are provided, the default constructor is no longer required.
-        foo(uint32_t a=1)
-        {
+        foo(uint32_t a=1) {
             cout<<"foo: In parameterized constructor"<<endl;
             bar = a;
         }
         // Copy constructor
-        foo(foo &f)
-        {
+        foo(foo &f) {
             cout<<"foo: In copy constructor"<<endl;
             bar = f.bar;
         }
@@ -79,8 +76,7 @@ invokes a parameterized constructor as compiler does the implicit conversion bet
 You may not always want the implicit converion from primitive type to user-defined type happen without neing noticed.
 It is usually recommended that the single argument constructors taking a primitve type argument should be marked as `explicit`.
 
-    explicit foo(uint32_t a=1)
-    {
+    explicit foo(uint32_t a=1) {
         cout<<"foo: In parameterized constructor"<<endl;
         bar = a;
     }
