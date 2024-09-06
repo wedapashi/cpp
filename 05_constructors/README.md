@@ -73,7 +73,7 @@ invokes a parameterized constructor as compiler does the implicit conversion bet
 
 ### Explicit usage:
 
-You may not always want the implicit converion from primitive type to user-defined type happen without neing noticed.
+You may not always want the converion (from primitive type to user-defined type) to happen without being noticed.
 It is usually recommended that the single argument constructors taking a primitve type argument should be marked as `explicit`.
 
     explicit foo(uint32_t a=1) {
