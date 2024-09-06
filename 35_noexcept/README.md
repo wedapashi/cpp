@@ -1,6 +1,6 @@
 # noexcept 
 
-The noexcept keyword is used to indicate that a function doesn’t throw an exception. It also can be used as an operator that determines whether its operand (an expression) potentially could throw an exception. It returns false if the operand could throw an exception and true otherwise. 
+The noexcept keyword is used to indicate that a function doesn’t throw an exception. It can be used as an operator that determines whether its operand (an expression) potentially could throw an exception. It returns false if the operand could throw an exception and true otherwise. 
 
 For example, consider the following declarations:
 
@@ -28,10 +28,9 @@ Contexually, it is a class that has calibration coefficients for a linear senso.
         }
     }
 
-The gain practically the gain can't be negative, zero or lower than half. So, we will throw a `std::invalid_arguments` exception if such a case. 
+Practicall, the gain can't/shouldn't be negative, zero or lower than half. So, we will throw a `std::invalid_arguments` exception in such a case. 
 
-Lets say, there is a upper-level class `class Sensor` which has an obejct of `class CalibCoeff`. For the sake of
-simplicity, lets not crowd the class with other members, just assume that they are there!
+Lets say, there is an upper-level class `class Sensor` which has an obejct of `class CalibCoeff`. For the sake of simplicity, lets not crowd the class with other members, just assume that they are there!
 
     class Sensor {
         public:
@@ -44,8 +43,7 @@ simplicity, lets not crowd the class with other members, just assume that they a
 
 And, its used in the following way -
 
-    int main(void)
-    {
+    int main(void) {
         try {
             CalibCoeff coefficients(-1.000789, -0.002386);
             Sensor Probe(true, 25, coefficients);
