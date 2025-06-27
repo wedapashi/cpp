@@ -28,7 +28,7 @@ Contexually, it is a class that has calibration coefficients for a linear senso.
         }
     }
 
-Practicall, the gain can't/shouldn't be negative, zero or lower than half. So, we will throw a `std::invalid_arguments` exception in such a case. 
+Practically, the gain can't/shouldn't be negative, zero or lower than half. So, we will throw a `std::invalid_arguments` exception in such a case. 
 
 Lets say, there is an upper-level class `class Sensor` which has an obejct of `class CalibCoeff`. For the sake of simplicity, lets not crowd the class with other members, just assume that they are there!
 
