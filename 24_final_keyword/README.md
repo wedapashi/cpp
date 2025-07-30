@@ -35,18 +35,31 @@ If we try to override `c_srand()` method as below,
 
 the code won't compile.
 
+# Override Keyword
+
+With inheritance, we use `virtual` keyword with functions in the base class, and then we override them in the derieved class. Suppose we mistakenly change the signature of the function in the derived class, the compiler does not complain about it. 
+This is where the `override` keyword helps. Mark the function in derived class as `override` and thent he compiler will raise an error that we are trying to override a non-virtual function.
+
 ***
 ### Compilation output:
     
     g++ main.cpp -o a.out -g -Werror -Wall -Wno-unknown-pragmas -lpthread -lrt
     main.cpp:9:7: error: cannot derive from ‘final’ base ‘foo’ in derived type ‘bar’
-        9 | class bar:foo {
+
+    main.cpp:8:7: error: cannot derive from ‘final’ base ‘foo’ in derived type ‘bar’
+        8 | class bar : public foo {
           |       ^~~
     main.cpp:19:10: error: virtual function ‘virtual void instance::c_srand(long unsigned int)’ overriding final function
        19 |     void c_srand(unsigned long val) {
           |          ^~~~~~~
-    main.cpp:14:18: note: overridden function is ‘virtual void driver::c_srand(long unsigned int)’
-       14 |     virtual void c_srand(unsigned long val) final {
+    main.cpp:13:18: note: overridden function is ‘virtual void driver::c_srand(long unsigned int)’
+       13 |     virtual void c_srand(unsigned long val) final {
           |                  ^~~~~~~
+    main.cpp:34:9: error: ‘void brave::method(float)’ marked ‘override’, but does not override
+       34 |    void method(float x) override {
+          |         ^~~~~~
+    main.cpp:37:9: error: ‘void brave::altMethod(int)’ marked ‘override’, but does not override
+       37 |    void altMethod(int x) override {
+          |         ^~~~~~~~~
     make: *** [Makefile:17: all] Error 1
 
