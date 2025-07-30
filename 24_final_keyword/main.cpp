@@ -1,23 +1,42 @@
 #include<iostream>
 using namespace std;
-#define msg(x)  #x
 
 class foo final {
    
 };
 
-class bar:foo {
+class bar : public foo {
 
 };
 
 class driver {
-    virtual void c_srand(unsigned long val) final {
+    virtual void c_srand(unsigned long val) final { 
+        // some code
     }
 };
 
-class instance:driver {
+class instance : public driver {
     void c_srand(unsigned long val) {
+        // some code 
     }
+};
+
+class alpha { 
+   virtual void method(int x) { 
+       // some code 
+   }
+   void altMethod(int x) { 
+       // some code 
+   }
+};
+
+class brave : alpha { 
+   void method(float x) override {
+       // some code
+   }
+   void altMethod(int x) override {
+       // some code 
+   }
 };
 
 int main(void) {
