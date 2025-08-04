@@ -8,7 +8,7 @@ When we intend to visit a Subway location, though, we are more objective. The pl
 We keep objectifying things. We don't wake up as an Engineer or something, we wake in real mode as a person, or a human being. We then objectify ourselves in order to get the work done -- in office hours we are engineers, at the pool table, we are pool players, etc.
 Does that tell you have with the right context, we can change how we behave, or even change the core function we have? Indeed!
 
-Speaking in programming paradigm, most of us have learnt C and/or assembly as the first programming language. That has helped us to develop an algorithmic thought-process, but at the same time it has always limited us think in a _procedural_ way.
+Speaking in programming paradigm, most of us have learnt C and/or assembly as the first programming language. That has helped us to develop an algorithmic thought-process, but at the same time it has always habituated us to think in a _procedural_ way.
 A simple assembly program to add two numbers would be nothing but a procedure similar to this -- 
 * Flush a register with 0 value to store the carry
 * Load the two numbers in separate memory locations
