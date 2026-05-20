@@ -4,7 +4,7 @@
 #include <iostream>
 #include <vector>
 
-//#define USE_PAR
+#define USE_PAR
 
 int main() {
 

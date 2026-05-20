@@ -8,6 +8,8 @@
 
 using namespace std::chrono_literals;
 
+//#define DUMP_TO_COUT
+
 class Logger {
 public:
     Logger(const Logger&) = delete;
@@ -43,32 +45,44 @@ private:
 };
 
 void dump(const std::string& content) {
+    #ifndef DUMP_TO_COUT
     Logger::getInstance().log(content);
+    #else
+    static int logCount = 1;
+    std::cout << "# " << logCount++ << ": " << content << std::endl;
+    #endif
 }
 
 void t1() {
     while(1) {
-        std::this_thread::sleep_for(2000ms);
-        dump("Thread 1");
+        std::this_thread::sleep_for(5000ms);
+        dump("In Thread 1");
     }
 }
 
-void t2() {
-    while (1) {
-        std::this_thread::sleep_for(1000ms);
-        dump("Thread 2");
+void t2(std::stop_token stopToken) {
+    while(!stopToken.stop_requested()) {
+        std::this_thread::sleep_for(2000ms);
+        dump("In Thread 2");
     }
+    dump("Thread 2: Stop Request received.");
 }
 
 int main(void) {
     dump("App start!");
     std::jthread thread1 { t1 };
     std::jthread thread2 { t2 };
-    
-    while(1) {
-        std::this_thread::sleep_for(500ms);
-        dump("In Main thread");
-    }
+    int counter { 0 };
 
+    while(1) {
+        std::this_thread::sleep_for(1000ms);
+        dump("In Main thread");
+        if(counter++ == 5) {
+            dump("Stopping thread 2");
+            thread2.request_stop();
+            break;
+        }
+    }
+    dump("App Exit!");
     return EXIT_SUCCESS;
 }
