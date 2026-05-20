@@ -50,14 +50,14 @@ All of these questions have *sane* answers that fall into the following 2 bucket
 #### Amdahl's Law
 
 ```
-                               1
-Scalability Improvement = -----------
-        Multiplier                 p
-                          1 - p + ---
-                                   n
+                                1
+Scalability Improvement = -------------
+        Multiplier                  p
+                           1 - p + ---
+                                    n
 
 Where: p: No. of tasks that you can do in parallel 
-       n: No. of CPU cores                                   
+       n: No. of CPU cores
 ```
 #### Parallel Algorithms
 Thankfully, Many standard library algorithms have parallel versions:
@@ -80,6 +80,22 @@ std::for_each(std::execution::par,
                 reading += offset;
              })
 ```
+
+### Separation of Concerns:
+
+You might want to use thread just to assign a thread for separate, possibly unrelated function, which is fine.
+
+For example, your main thread will not want to blink LED, that can be done by a different thread, which may have a different periodicity.
+
+---
+
+## `std::jthread`
+`std::jthread` represents a single thread of execution.  
+These are better version of `std::thread` in a way that it automatically rejoins on destruction and provides optional stop tokens by default.
+
+**Quoting cppreference:**
+>Unlike `std::thread`, the `std::jthread` logically holds an internal private member of type `std::stop_source`, which maintains a shared stop-state. The `std::jthread` constructor accepts a function that takes a `std::stop_token` as its first argument, which will be passed in by the `std::jthread` from its internal `std::stop_source`. This allows the function to check if stop has been requested during its execution, and return if it has.
+
 
 
 
