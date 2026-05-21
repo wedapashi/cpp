@@ -96,6 +96,81 @@ These are better version of `std::thread` in a way that it automatically rejoins
 **Quoting cppreference:**
 >Unlike `std::thread`, the `std::jthread` logically holds an internal private member of type `std::stop_source`, which maintains a shared stop-state. The `std::jthread` constructor accepts a function that takes a `std::stop_token` as its first argument, which will be passed in by the `std::jthread` from its internal `std::stop_source`. This allows the function to check if stop has been requested during its execution, and return if it has.
 
+## Synchronization
+
+### Latches
+
+Its a single-use counter that allows threads to wait for the count to reach zero.
+
+- Create the latch with a non-zero count
+- One or more threads decrease the count as they complete their function
+- Other threads may wait for the latch to be signalled
+- When the count reaches zero, it is permanently signalled and all waiting threads are woken
+
+#### Latch API:
+
+```
+std::latch x { count }
+```
+Create a latch with specified count 
+
+```
+x.count_down()
+```
+Decrease the count, trigger latch if count = 0
+
+
+```
+x.wait()
+```
+Poll the latch, block/wait until latch is triggered
+
+
+```
+x.arrive_and_wait()
+```
+`x.count_down()` then `x.wait()`
+
+---
+
+### Barriers
+
+`std::barrier<>` is a re-usable barrier.
+
+- Construct a barrier, with a non-zero count and a *completion function*
+- One or more threads arrive at the barrier
+- Some of these threads wait for the barrier to be signalled
+- When the count reached zero, the barrier is signalled and the completion function is invoked and the count is reset (back to 0)
+
+#### Barrier API:
+
+```
+std::barrier<task_type> x { count, task }
+```
+Create a barrier with specified count and completion function
+
+
+```
+auto arrival_token = x.arrive()
+```
+Decreases the count, triggers the completion phase if count reaches 0
+
+```
+x.wait(arrival_token)
+```
+Poll the barrier, block/wait until completion phase to be completed
+
+```
+x.arrive_and_wait()
+```
+Implements `x.wait(x.arrive())`
+
+```
+x.arrive_and_drop()
+```
+Descreases the count permanently without waiting.
+
+
 
 
 

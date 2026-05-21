@@ -78,19 +78,19 @@ int main() {
     workers.emplace_back(
         initializeComponent,
         "Database",
-        2000,
+        10000,
         std::ref(startupLatch));
 
     workers.emplace_back(
         initializeComponent,
         "Redis Server",
-        1500,
+        5000,
         std::ref(startupLatch));
 
     workers.emplace_back(
         init_AppConfig,
         "App Configuration",
-        2500,
+        1000,
         std::ref(startupLatch));
 
     std::cout << std::endl << "Main thread waiting for services..." << std::endl;
