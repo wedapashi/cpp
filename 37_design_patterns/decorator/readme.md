@@ -1,14 +1,15 @@
-The Observer Pattern is a behavioral design pattern that establishes a one-to-many relationship between objects. A Subject maintains a list of Observers and notifies them automatically whenever its state changes.
+the Decorator Pattern is useful when you want to dynamically add behavior to a module without modifying the original class.
 
 #### Fundamental of Factory Pattern:
 Typical components:
 
-| Role              | Responsibility                       |
-| ----------------- | ------------------------------------ |
-| Subject           | Generates events/data                |
-| Observer          | Interested in updates                |
-| Concrete Subject  | Actual sensor/module                 |
-| Concrete Observer | Logger, monitor, PWM controller, etc |
+| Role               | Responsibility                               |
+| ------------------ | -------------------------------------------- |
+| Component          | Common interface for all firmware modules    |
+| Concrete Component | Actual sensor/module implementation          |
+| Decorator          | Wraps another component and forwards calls   |
+| Concrete Decorator | Adds extra functionality                     |
+| Client             | Firmware application using decorated modules |
 
 ### Embedded Scenario
 
@@ -29,65 +30,57 @@ This example demonstrates:
 
 ### Architecture:
 
-#### Subjects:
-- Temperature Sensor
-- Pressure Sensor
-- Battery Monitor
+| Decorator Pattern Role | Embedded Example                                                                      |
+| ---------------------- | ------------------------------------------------------------------------------------- |
+| Component              | `IModule`                                                                             |
+| Concrete Component     | `TemperatureSensor`, `PressureSensor`, `PWMController`, `ADCModule`, `BatteryMonitor` |
+| Decorator              | `ModuleDecorator`                                                                     |
+| Concrete Decorators    | `LoggingDecorator`, `DiagnosticDecorator`, `FilterDecorator`                          |
+| Client                 | `main()` firmware scheduler                                                           |
 
-#### Observers:
-- PWM Controller
-- Data Logger
-- ADC Monitor
 
 ---
 ### Design:
 
 ```mermaid
-sequenceDiagram
+classDiagram
 
-    participant Main
-    participant TemperatureSensor
-    participant PressureSensor
-    participant BatteryMonitor
-    participant PWMController
-    participant ADCModule
-    participant DataLogger
+class IModule {
+    <<interface>>
+    +initialize()
+    +execute()
+    +getName()
+}
 
-    %% Observer Registration
+class TemperatureSensor
+class PressureSensor
+class PWMController
+class ADCModule
+class BatteryMonitor
 
-    Main->>TemperatureSensor: attach(PWMController)
-    Main->>TemperatureSensor: attach(DataLogger)
+IModule <|.. TemperatureSensor
+IModule <|.. PressureSensor
+IModule <|.. PWMController
+IModule <|.. ADCModule
+IModule <|.. BatteryMonitor
 
-    Main->>PressureSensor: attach(ADCModule)
-    Main->>PressureSensor: attach(DataLogger)
+class ModuleDecorator {
+    #module_
+    +initialize()
+    +execute()
+    +getName()
+}
 
-    Main->>BatteryMonitor: attach(DataLogger)
+IModule <|.. ModuleDecorator
 
-    %% Temperature Event
+class LoggingDecorator
+class DiagnosticDecorator
+class FilterDecorator
 
-    Main->>TemperatureSensor: readTemperature(42.5)
+ModuleDecorator <|-- LoggingDecorator
+ModuleDecorator <|-- DiagnosticDecorator
+ModuleDecorator <|-- FilterDecorator
 
-    TemperatureSensor->>PWMController: onNotify(TemperatureChanged)
-    PWMController-->>TemperatureSensor: Fan PWM adjusted
-
-    TemperatureSensor->>DataLogger: onNotify(TemperatureChanged)
-    DataLogger-->>TemperatureSensor: Temperature logged
-
-    %% Pressure Event
-
-    Main->>PressureSensor: readPressure(88.2)
-
-    PressureSensor->>ADCModule: onNotify(PressureChanged)
-    ADCModule-->>PressureSensor: ADC processed
-
-    PressureSensor->>DataLogger: onNotify(PressureChanged)
-    DataLogger-->>PressureSensor: Pressure logged
-
-    %% Battery Event
-
-    Main->>BatteryMonitor: updateBattery(15)
-
-    BatteryMonitor->>DataLogger: onNotify(BatteryLow)
-    DataLogger-->>BatteryMonitor: Warning logged
+ModuleDecorator o-- IModule
 
 ```
