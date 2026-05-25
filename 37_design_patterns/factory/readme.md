@@ -12,7 +12,31 @@ Typical components:
 | Factory           | Creates objects        |
 | Client            | Uses objects           |
 
+Core Idea of Factory pattern depends on the fact that, without Factory:
 
+```
+Application
+   |
+   +---- knows TemperatureSensor
+   +---- knows PressureSensor
+   +---- knows ADCModule
+   +---- knows PWMModule
+```
+With Factory:
+```
+Application
+    |
+    +---- knows only IFirmwareModule
+                    ^
+                    |
+              ModuleFactory
+                    |
+        --------------------------------
+        |        |        |            |
+      Temp     ADC      PWM       Pressure
+
+```
+The application only knows the interface and the factory. It does NOT know concrete implementations.
 
 ### Embedded Scenario
 
@@ -31,6 +55,80 @@ This example demonstrates:
 - No dynamic polymorphism abuse
 - Easy to extend
 
+```
+#### Class diagram:
+
+```mermaid
+classDiagram
+
+    class IFirmwareModule {
+        <<interface>>
+        +init() void
+        +execute() void
+        +name() std::string
+    }
+
+    class TemperatureSensor {
+        +init() void
+        +execute() void
+        +name() std::string
+    }
+
+    class PressureSensor {
+        +init() void
+        +execute() void
+        +name() std::string
+    }
+
+    class PWMModule {
+        +init() void
+        +execute() void
+        +name() std::string
+    }
+
+    class ADCModule {
+        +init() void
+        +execute() void
+        +name() std::string
+    }
+
+    class BatteryMonitor {
+        +init() void
+        +execute() void
+        +name() std::string
+    }
+
+    class DataLogger {
+        +init() void
+        +execute() void
+        +name() std::string
+    }
+
+    class ModuleFactory {
+        +createModule(type : ModuleType) IFirmwareModule*
+    }
+
+    class ModuleType {
+        <<enumeration>>
+        Temperature
+        Pressure
+        PWM
+        ADC
+        Battery
+        Logger
+    }
+
+    IFirmwareModule <|-- TemperatureSensor
+    IFirmwareModule <|-- PressureSensor
+    IFirmwareModule <|-- PWMModule
+    IFirmwareModule <|-- ADCModule
+    IFirmwareModule <|-- BatteryMonitor
+    IFirmwareModule <|-- DataLogger
+
+    ModuleFactory --> IFirmwareModule : creates
+    ModuleFactory --> ModuleType : uses
+```
+
 ### Architecture:
 
 Instead of the application directly doing:
@@ -45,7 +143,7 @@ new TemperatureSensor();
 the application asks a Factory to create the object:
 ```
 ModuleFactory::createModule(ModuleType::Temperature);
-```
+
 ---
 ### Design:
 

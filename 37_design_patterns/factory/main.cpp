@@ -141,8 +141,7 @@ public:
 // Module Types
 // ============================================================
 
-enum class ModuleType
-{
+enum class ModuleType {
     Temperature,
     Pressure,
     PWM,
@@ -155,8 +154,7 @@ enum class ModuleType
 // Factory Class
 // ============================================================
 
-class ModuleFactory
-{
+class ModuleFactory {
 public:
 
     static std::unique_ptr<IFirmwareModule>
@@ -192,8 +190,7 @@ public:
 // Main Application
 // ============================================================
 
-int main()
-{
+int main() {
     std::vector<std::unique_ptr<IFirmwareModule>> modules;
 
     modules.push_back(
