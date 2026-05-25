@@ -240,16 +240,135 @@ auto sensor =
 - Many small wrapper classes
 - Debugging chain may be harder
 
+## Facade
+
+### Purpose:
+
+Provides a simplified high-level interface to a complex subsystem.
+
+### When to Use:
+- System has many interconnected modules
+- Client code becomes too complicated
+- You want a single entry point
+- Simplifying initialization/shutdown sequences
+
+### Example:
+
+Firmware subsystem manager controlling:
+
+- Temperature Sensor
+- ADC
+- PWM
+- Battery Monitor
+- Data Logger
+
+Instead of client code manually calling all modules individually.
+
+### Core idea:
+
+Instead of:
+
+```
+adc.init();
+pwm.init();
+temperatureSensor.start();
+batteryMonitor.enable();
+logger.open();
+
+```
+Use:
+```
+FirmwareFacade firmware;
+
+firmware.initializeSystem();
+firmware.runCycle();
+
+```
+### Key Components:
+| Component         | Responsibility                    |
+| ----------------- | --------------------------------- |
+| Facade            | Simplified high-level interface   |
+| Subsystem Classes | Real underlying modules/services  |
+| Client            | Uses facade instead of subsystems |
+
+### Advantages:
+- Simplifies complex systems
+- Reduces coupling
+- Easier API usage
+- Centralized workflow handling
+
+### Drawbacks:
+- Facade can become too large
+- May hide subsystem flexibility
+
+## State
+
+### Purpose:
+Allows an object to change behavior dynamically based on its internal state.
+
+### When to Use:
+- System behavior changes with modes/states
+- Large conditional logic exists
+- State transitions are well-defined
+- Embedded device modes are important
+
+### Example:
+Device operating modes:
+- Boot State
+- Idle State
+- Active Monitoring State
+- Low Battery State
+- Fault State
+
+Each state changes firmware behavior differently.
+
+### Core idea:
+Instead of:
+
+```
+if(state == BOOT) {
+    ...
+}
+else if(state == IDLE) {
+    ...
+}
+else if(state == LOW_BATTERY) {
+    ...
+}
+```
+Use:
+```
+device.setState(std::make_unique<ActiveState>());
+device.handle();
+```
+### Key Components:
+| Component       | Responsibility                  |
+| --------------- | ------------------------------- |
+| Context         | Maintains current state         |
+| State Interface | Common behavior API             |
+| Concrete State  | Implements state-specific logic |
+
+### Advantages:
+- Cleaner state handling
+- Removes huge conditional blocks
+- Easier state extension
+- Better maintainability
+
+### Drawbacks:
+- More classes
+- State transition debugging can be harder
+
 # How they all compare?
 
-| Pattern   | Main Goal                    | Typical Embedded Usage        |
-| --------- | ---------------------------- | ----------------------------- |
-| Builder   | Step-by-step object creation | Packet/message construction   |
-| Factory   | Flexible object creation     | Sensor/module instantiation   |
-| Observer  | Event notification           | Sensor update propagation     |
-| Adapter   | Interface conversion         | Legacy driver integration     |
-| Decorator | Dynamic feature extension    | Logging/filtering/calibration |
-
+| Pattern   | Main Goal                    | Typical Embedded Usage           |
+| --------- | ---------------------------- | -------------------------------- |
+| Builder   | Step-by-step object creation | Packet/message construction      |
+| Factory   | Flexible object creation     | Sensor/module instantiation      |
+| Observer  | Event notification           | Sensor update propagation        |
+| Adapter   | Interface conversion         | Legacy driver integration        |
+| Decorator | Dynamic feature extension    | Logging/filtering/calibration    |
+| Facade    | Simplified subsystem access  | Firmware subsystem orchestration |
+| State     | Behavior based on state      | Device mode management           |
 
 
 # Can they co-exist?
@@ -262,3 +381,5 @@ These patterns are often used together in embedded firmware:
 - **Observer** distributes events
 - **Adapter** integrates legacy drivers
 - **Decorator** adds runtime features like logging/filtering
+- **Facade** provides a clean API over complex firmware subsystems
+- **State** manages device operating modes and transitions
